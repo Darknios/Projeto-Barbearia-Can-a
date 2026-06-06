@@ -11,7 +11,7 @@ O sistema foi desenvolvido com foco em **simplicidade, usabilidade e integraçã
 
 A aplicação está disponível online:
 
-🔗 https://projetobarbearia.rf.gd
+🔗 https://barbeariacanaa.netlify.app/
 
 ---
 
@@ -32,8 +32,7 @@ A aplicação está disponível online:
 * **HTML5**
 * **CSS3**
 * **JavaScript**
-* **PHP**
-* **MySQL**
+* **MySQL - (SUPERBASE) **
 * **Flatpickr (biblioteca de calendário)**
 
 ---
