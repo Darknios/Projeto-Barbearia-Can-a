@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08090b">
+  <meta name="description" content="Agende seu corte na Canaã Pai & Filho Barber: escolha o serviço, veja os horários livres e confirme pelo WhatsApp.">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Canaã Barber">
+
+  <link rel="icon" type="image/png" href="apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <title>Canaã Pai & Filho Barber | Agendamento</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="booking-shell">
+    <section class="brand-panel" aria-label="Canaã Pai & Filho Barber">
+      <div class="brand-marker">
+        <span class="marker-line"></span>
+        Agendamento online
+      </div>
+
+      <img class="logo" src="Logo.png" alt="Canaã Pai & Filho Barber" width="1024" height="723" decoding="async">
+
+      <div class="brand-copy">
+        <p class="eyebrow">Tradição passada de geração</p>
+        <h1>Corte marcado sem espera no WhatsApp.</h1>
+        <p>
+          Escolha o serviço, confira os horários livres e confirme sua reserva.
+          Depois disso a mensagem para o barbeiro já sai pronta.
+        </p>
+      </div>
+
+      <dl class="shop-facts" aria-label="Informações da barbearia">
+        <div>
+          <dt>Funcionamento</dt>
+          <dd id="workingDaysText">Todos os dias</dd>
+        </div>
+        <div>
+          <dt>Atendimento</dt>
+          <dd id="workingTimesText">09:00 às 19:00</dd>
+        </div>
+        <div>
+          <dt>Confirmação</dt>
+          <dd>Via WhatsApp</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="booking-panel" aria-labelledby="booking-title">
+      <div class="mobile-brand-strip" aria-label="Canaã Pai & Filho Barber">
+        <img src="Logo.png" alt="Canaã Pai & Filho Barber">
+        <div>
+          <strong>Canaã Pai & Filho</strong>
+          <span id="mobileScheduleText">Todos os dias, 09:00 às 19:00</span>
+        </div>
+      </div>
+
+      <div class="panel-heading">
+        <p>Agenda da barbearia</p>
+        <h2 id="booking-title">Agendar horário</h2>
+      </div>
+
+      <form id="formAgendamento" novalidate>
+        <div class="field">
+          <label for="nome">Nome</label>
+          <input id="nome" type="text" name="nome" placeholder="Seu nome completo" autocomplete="name" autocapitalize="words" enterkeyhint="next" required>
+        </div>
+
+        <div class="field">
+          <label for="telefone">WhatsApp</label>
+          <input id="telefone" type="tel" name="telefone" placeholder="(81) 99999-9999" autocomplete="tel" inputmode="tel" maxlength="15" enterkeyhint="next" required>
+        </div>
+
+        <div class="field">
+          <label for="servico">Serviço</label>
+          <select id="servico" name="servico" required>
+            <option value="" selected disabled>Escolha o serviço</option>
+            <option value="Corte">Corte</option>
+            <option value="Barba">Barba</option>
+            <option value="Corte + Barba">Corte + Barba</option>
+          </select>
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="data">Data</label>
+            <input id="data" type="text" name="data" placeholder="Escolha a data" required>
+          </div>
+
+          <div class="field">
+            <label for="hora">Horário</label>
+            <select id="hora" name="hora" required disabled>
+              <option value="">Data primeiro</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="submitButton" type="submit">
+          <span class="button-text">Confirmar agendamento</span>
+          <span class="button-loader" aria-hidden="true"></span>
+        </button>
+
+        <p id="scheduleNote" class="form-note">
+          Dias fechados não aparecem na agenda da barbearia.
+        </p>
+
+        <a class="admin-entry-link" href="admin.html">Área da barbearia</a>
+
+        <div id="statusMessage" class="status-panel" role="status" aria-live="polite" hidden></div>
+      </form>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

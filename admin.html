@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08090b">
+  <meta name="description" content="Painel da Canaã Pai & Filho Barber para ver e gerenciar os agendamentos.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Canaã Painel">
+
+  <link rel="icon" type="image/png" href="apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <title>Painel da Barbearia | Canaã Pai & Filho</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-body">
+  <main class="admin-shell">
+    <section id="loginView" class="admin-login" aria-labelledby="login-title">
+      <img class="admin-logo" src="Logo.png" alt="Canaã Pai & Filho Barber">
+
+      <div class="panel-heading">
+        <p>Área da barbearia</p>
+        <h1 id="login-title">Ver agenda</h1>
+      </div>
+
+      <form id="adminLoginForm" class="admin-login-form">
+        <div class="field">
+          <label for="adminPassword">Senha da barbearia</label>
+          <input id="adminPassword" type="password" name="adminPassword" placeholder="Digite a senha" autocomplete="current-password" required>
+        </div>
+
+        <label class="remember-row">
+          <input id="rememberPassword" type="checkbox">
+          <span>Lembrar neste aparelho</span>
+        </label>
+
+        <button id="loginButton" type="submit">
+          <span class="button-text">Entrar no painel</span>
+          <span class="button-loader" aria-hidden="true"></span>
+        </button>
+      </form>
+
+      <div id="loginStatus" class="status-panel" role="status" aria-live="polite" hidden></div>
+
+      <a class="admin-back-link" href="index.html">Voltar para o agendamento</a>
+    </section>
+
+    <section id="dashboardView" class="admin-dashboard" aria-labelledby="dashboard-title" hidden>
+      <header class="admin-topbar">
+        <div>
+          <p class="eyebrow">Painel da barbearia</p>
+          <h1 id="dashboard-title">Agenda</h1>
+        </div>
+
+        <div class="admin-actions">
+          <button id="refreshButton" class="secondary-button" type="button">Atualizar</button>
+          <button id="logoutButton" class="secondary-button danger-button" type="button">Sair</button>
+        </div>
+      </header>
+
+      <section class="admin-filters" aria-label="Filtros dos agendamentos">
+        <div class="field">
+          <label for="filterStart">De</label>
+          <input id="filterStart" type="date">
+        </div>
+
+        <div class="field">
+          <label for="filterEnd">Até</label>
+          <input id="filterEnd" type="date">
+        </div>
+
+        <div class="field">
+          <label for="filterStatus">Status</label>
+          <select id="filterStatus">
+            <option value="">Todos</option>
+            <option value="agendado">Agendados</option>
+            <option value="cancelado">Cancelados</option>
+          </select>
+        </div>
+
+        <div class="field search-field">
+          <label for="filterSearch">Buscar</label>
+          <input id="filterSearch" type="search" placeholder="Nome, telefone ou serviço">
+        </div>
+      </section>
+
+      <section class="admin-stats" aria-label="Resumo da agenda">
+        <article>
+          <span>Hoje</span>
+          <strong id="statToday">0</strong>
+        </article>
+        <article>
+          <span>Agendados</span>
+          <strong id="statScheduled">0</strong>
+        </article>
+        <article>
+          <span>Cancelados</span>
+          <strong id="statCancelled">0</strong>
+        </article>
+        <article>
+          <span>Total no filtro</span>
+          <strong id="statTotal">0</strong>
+        </article>
+      </section>
+
+      <div id="adminStatus" class="status-panel" role="status" aria-live="polite" hidden></div>
+
+      <section class="admin-schedule" aria-label="Funcionamento da barbearia">
+        <div class="admin-section-head">
+          <div>
+            <p class="eyebrow">Configuração da agenda</p>
+            <h2>Funcionamento</h2>
+          </div>
+          <span id="scheduleSummary">Carregando horários...</span>
+        </div>
+
+        <form id="scheduleForm" class="schedule-form">
+          <fieldset class="weekday-fieldset">
+            <legend>Dias abertos</legend>
+            <div class="weekday-grid">
+              <label><input type="checkbox" name="workingDay" value="0"> <span>Domingo</span></label>
+              <label><input type="checkbox" name="workingDay" value="1"> <span>Segunda</span></label>
+              <label><input type="checkbox" name="workingDay" value="2"> <span>Terça</span></label>
+              <label><input type="checkbox" name="workingDay" value="3"> <span>Quarta</span></label>
+              <label><input type="checkbox" name="workingDay" value="4"> <span>Quinta</span></label>
+              <label><input type="checkbox" name="workingDay" value="5"> <span>Sexta</span></label>
+              <label><input type="checkbox" name="workingDay" value="6"> <span>Sábado</span></label>
+            </div>
+          </fieldset>
+
+          <div class="schedule-times-panel">
+            <div class="field">
+              <label for="newScheduleTime">Horários liberados</label>
+              <div class="time-add-row">
+                <input id="newScheduleTime" type="time" step="900">
+                <button id="addScheduleTime" class="secondary-button" type="button">Adicionar</button>
+              </div>
+            </div>
+
+            <div id="scheduleTimesList" class="schedule-times-list" aria-live="polite"></div>
+          </div>
+
+          <div class="schedule-actions">
+            <button id="saveScheduleButton" type="submit">
+              <span class="button-text">Salvar funcionamento</span>
+              <span class="button-loader" aria-hidden="true"></span>
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="appointments-card" aria-label="Lista de agendamentos">
+        <div class="appointments-head">
+          <h2>Agendamentos</h2>
+          <span id="appointmentsCount">0 registros</span>
+        </div>
+
+        <div class="appointments-table-wrap">
+          <table class="appointments-table">
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Serviço</th>
+                <th>Data</th>
+                <th>Horário</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="appointmentsTable"></tbody>
+          </table>
+        </div>
+
+        <div id="appointmentsList" class="appointments-list"></div>
+
+        <p id="emptyState" class="empty-state" hidden>Nenhum agendamento encontrado nesse filtro.</p>
+      </section>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>
